@@ -1,9 +1,6 @@
 const add = (num1, num2) => result = Number(num1) + Number(num2);
-
 const subtract = (num1, num2) => result = num1 - num2;
-
 const multiply = (num1, num2) => result = num1 * num2;
-
 const divide = (num1, num2) => result = num1 / num2;
 
 let num1 = 0;
@@ -26,31 +23,30 @@ let clear = document.querySelector('#clear');
 
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
-        // if(operator === '') {
-        //     displayValue = '';
-        //     displayValue = displayValue.concat(number.textContent);
-        //     display.textContent = displayValue;
-        //     console.log({displayValue});     
-        //             console.log('operator is undefined')       
-        // } else {
-        //     displayValue = displayValue.concat(number.textContent);
-        //     display.textContent = displayValue;
-        //     console.log({displayValue});
-        //             console.log('has operator')
-        // }
-        displayValue = displayValue.concat(number.textContent);
-        display.textContent = displayValue;
-        console.log({displayValue});
+        if(operator === '') {
+            displayValue = displayValue.concat(number.textContent);
+            display.textContent = displayValue;
+            console.log({displayValue});     
+                    console.log('operator is undefined')
+        } else {
+            displayValue = displayValue.concat(number.textContent);
+            display.textContent = displayValue;
+            console.log({displayValue});
+                    console.log('has operator')
+        }
     })
 })
 
 
 operators.forEach((operatorInput) => {
     operatorInput.addEventListener('click', () => {
-        if(num1 === 0) {
-            num1 = displayValue;
+        if (operator === '') {
+            if (displayValue !== '') {
+                num1 = displayValue;
+            }
             operator = operatorInput.id;
                     console.log({operator});
+                    console.log({num1})
             displayValue = '';
         } else {
             num2 = displayValue;
@@ -60,23 +56,28 @@ operators.forEach((operatorInput) => {
             display.textContent = result;
             operator = operatorInput.id;
             displayValue = '';
+                    console.log({num1})
+                    console.log({num2})
+
         }
     })
 })
 
 equals.addEventListener('click', () => {
     num2 = displayValue;
-                // console.timeLog({num2});
     operate(num1, num2, operator);
                 console.log(`${num1} ${operator} ${num2} = ${result}`)
     display.textContent = result;
-    // operator = '';
+    displayValue = '';
+    operator = '';
+    num1 = result;
 })
 
 clear.addEventListener('click', () => {
     num1 = 0;
     num2 = 0;
     operator = '';
+    result = undefined;
     displayValue = '';
     display.textContent = 0;
                 console.log(`${num1} ${operator} ${num2} = ${result}`)
