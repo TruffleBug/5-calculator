@@ -9,6 +9,8 @@ button {
     margin: 1px;
     min-width: 46px;
     box-shadow: 3px 3px 3px lightgrey;
+    border: 1px solid grey;
+    border-radius: 3px;
 }
 
 .display {
@@ -19,5 +21,13 @@ button {
 
 .buttons {
     display: flex;
-    width: 326px;
+    width: 376px;
+}
+
+.operators button {
+    background-color: lightgrey;
+}
+
+#equals, #backspace, #clear {
+    background-color: darkgrey;
 }

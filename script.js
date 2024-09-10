@@ -20,10 +20,15 @@ let numbers = document.querySelectorAll('.numbers button');
 let operators = document.querySelectorAll('.operators button');
 let equals = document.querySelector('#equals');
 let clear = document.querySelector('#clear');
+let decimal = document.querySelector('#decimal');
+let backspace = document.querySelector('#backspace');
 
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
-        if(operator === '') {
+        if (displayValue.includes('.') && number.textContent === '.') {
+            return;
+        }
+        if (operator === '') {
             displayValue = displayValue.concat(number.textContent);
             display.textContent = displayValue;
             console.log({displayValue});     
@@ -35,6 +40,16 @@ numbers.forEach((number) => {
                     console.log('has operator')
         }
     })
+})
+
+
+decimal.addEventListener('click', () => {
+    if (displayValue.includes('.')) {
+        return;
+    } else {
+        displayValue = displayValue.concat(number.textContent);
+        display.textContent = displayValue;
+    }
 })
 
 
@@ -71,6 +86,14 @@ equals.addEventListener('click', () => {
     displayValue = '';
     operator = '';
     num1 = result;
+})
+
+backspace.addEventListener('click', () => {
+    displayValue = displayValue.slice(0, -1);
+    display.textContent = displayValue;
+    if (displayValue === '') {
+        display.textContent = 0;
+    }
 })
 
 clear.addEventListener('click', () => {
